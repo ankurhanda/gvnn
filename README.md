@@ -1,8 +1,11 @@
-Source code for neural network layers performing geometric transformations 
+Source code for neural network layers performing geometric transformations soon to be added.
+
 
 SO3 layer
 
 SE3 layer
+
+Projection layer
 
 Optical Flow layer
 
