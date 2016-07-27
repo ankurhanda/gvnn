@@ -11,7 +11,7 @@ gvnn is inspired by the Spatial Transformer Networks (STN) paper that appeared i
 * Per-pixel 2D transformations
     * 2D optical flow
     * 6D Overparamterised optical flow
-111
+
 * Per-pixel 3D transformations
     * 6D SE3/Sim3 transformations
     * 10D transformation
