@@ -2,7 +2,7 @@ Source code for neural network layers performing geometric transformations soon 
 
 Link to the paper [gvnn](http://arxiv.org/pdf/1607.07405.pdf)
 
-gvnn is inspired by the Spatial Transformer Networks paper that appeared in NIPS in 2015. However, it was mainly limited to 2D transformations. We added a new set of transformations generally needed for manipulating data in 3D geometric computer vision. These transformations include the 3D counterparts of what were used in original STN and a lot more new transformations. These include
+gvnn is inspired by the Spatial Transformer Networks (STN) paper that appeared in NIPS in 2015. However, ST were mainly limited to applying only 2D transformations to the input. We added a new set of transformations often needed for manipulating data in 3D geometric computer vision. These include the 3D counterparts of what were used in original STN together with a lot more new transformations. These include
 
 * SO3 layer - Rotations are expressed in so3 vector (v1, v2, v3)
 * SE3 and Sim3 layer 
@@ -11,12 +11,15 @@ gvnn is inspired by the Spatial Transformer Networks paper that appeared in NIPS
 * Per-pixel 2D transformations
     * 2D optical flow
     * 6D Overparamterised optical flow
-
+111
 * Per-pixel 3D transformations
     * 6D SE3/Sim3 transformations
     * 10D transformation
 
 * M-estimators
+
+We plan to make this a comprehensive and complete library to bridge the gap between geometry and deeplearning.
+
 
 **Can deep learning replace geometry?**
 
