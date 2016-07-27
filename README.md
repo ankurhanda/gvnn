@@ -18,5 +18,6 @@ gvnn is inspired by the Spatial Transformer Networks paper that appeared in NIPS
 
 * M-estimators
 
-*Can deep learning replace geometry?*
+**Can deep learning replace geometry?**
+
 We are still performing large scale experiments on data collected both from real world and our previous work, [SceneNet](robotvault.bitbucket.org) to test our various different geometric computer vision algorithms e.g. visual odometry, 3D reconstruction and place recognition. However, this is aimed towards aiding geometry wherever it fails. We certainly believe that convnets can provide stable features for images which in turn can allow matching two images of same scene taken at different times of the day - something not possible with pure geometric methods that either rely on pixel values or SIFT-like features. 
