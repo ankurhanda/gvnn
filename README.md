@@ -21,6 +21,4 @@ gvnn is inspired by the Spatial Transformer Networks (STN) paper that appeared i
 We plan to make this a comprehensive and complete library to bridge the gap between geometry and deeplearning.
 
 
-**Can deep learning replace geometry?**
-
-We are still performing large scale experiments on data collected both from real world and our previous work, [SceneNet](http://robotvault.bitbucket.org) to test our various different geometric computer vision algorithms e.g. visual odometry, 3D reconstruction and place recognition. However, this is aimed towards aiding geometry wherever it fails. We certainly believe that convnets can provide stable features for images which in turn can allow matching two images of same scene taken at different times of the day - something not possible with pure geometric methods that either rely on pixel values or SIFT-like features. 
+We are still performing large scale experiments on data collected both from real world and our previous work, [SceneNet](http://robotvault.bitbucket.org) to test our various different geometric computer vision algorithms e.g. visual odometry, 3D reconstruction and place recognition. 
