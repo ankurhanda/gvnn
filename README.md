@@ -1,4 +1,4 @@
-This work is submitted to an ECCV workshop. Source code for neural network layers performing geometric transformations will be added upon the publication of the work.
+This work is submitted to deep-geometry workshop in ECCV. Source code for neural network layers performing geometric transformations will be added upon the publication of the work.
 
 Link to the paper [gvnn](http://arxiv.org/pdf/1607.07405.pdf)
 
