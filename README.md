@@ -24,4 +24,8 @@ gvnn is inspired by the Spatial Transformer Networks (STN) paper that appeared i
 We plan to make this a comprehensive and complete library to bridge the gap between geometry and deeplearning.
 
 
-We are still performing large scale experiments on data collected both from real world and our previous work, [SceneNet](http://robotvault.bitbucket.org) to test our various different geometric computer vision algorithms e.g. visual odometry, 3D reconstruction and place recognition. 
+We are still performing large scale experiments on data collected both from real world and our previous work, [SceneNet](http://robotvault.bitbucket.org) to test our various different geometric computer vision algorithms e.g. dense image registration, 3D reconstruction and place recognition.
+
+#SO3 Layer 
+
+![Montage-0](assets/so3_rot_example.png)
