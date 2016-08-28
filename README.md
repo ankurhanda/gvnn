@@ -1,5 +1,3 @@
-This work is submitted to deep-geometry workshop in ECCV. Source code for neural network layers performing geometric transformations will be added upon the publication of the work.
-
 Link to the paper [gvnn](http://arxiv.org/pdf/1607.07405.pdf)
 
 gvnn is inspired by the Spatial Transformer Networks (STN) paper that appeared in NIPS in 2015. However, ST were mainly limited to applying only 2D transformations to the input. We added a new set of transformations often needed for manipulating data in 3D geometric computer vision. These include the 3D counterparts of what were used in original STN together with a lot more new transformations.
@@ -37,3 +35,26 @@ luarocks make gvnn-scm-1.rockspec
 
 #License 
 GPL
+
+If you use the code, please consider citing the following 
+```
+@inproceedings{PatrauceanHC16,
+  author    = {Ankur Handa and 
+               Michael Bloesch and 
+               Viorica P{\u a}tr{\u a}ucean and
+               Simon Stent and
+               John McCormac and
+               Andrew Davison},
+  title     = {gvnn: Neural Network Library for Geometric Computer Vision},
+  booktitle = {arXiv:1607.07405},
+  year      = {2016}
+}
+```
+```
+@Misc{STNImplementation,
+    author = {Moodstocks},
+    title={{Open Source Implementation of Spatial Transformer Networks}},
+    howpublished={URL https://github.com/qassemoquab/stnbhwd},
+    year={2015}
+}
+```
