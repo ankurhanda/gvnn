@@ -7,9 +7,9 @@ dofile('imagewarpingSE3.lua')
 --local height=480
 --local width =360
 
-ref_rgb_image   = image.load('/home/dysondemo/workspace/code/icl-nuim/traj1/rgb/100.png')
+ref_rgb_image   = image.load('iclnuim/rgb/100.png')
 
-ref_depth_image = image.load('/home/dysondemo/workspace/code/icl-nuim/traj1/depth/100.png')
+ref_depth_image = image.load('iclnuim/depth/100.png')
 ref_depth_image = (ref_depth_image*65535)/5000.0
 
 print(ref_rgb_image:size())
@@ -28,6 +28,8 @@ so3_t_vector      = torch.Tensor(1,6):uniform()
 
 -- tx, ty, tz, rx, ry, rz
 -- -0.00119339 -0.00449791 -0.00122229 0.00104319 -0.00694122 -0.00333668
+
+--- so3 and translation vector
 
 so3_t_vector[1][1] = 0--  0.00104319
 so3_t_vector[1][2] = 0-- -0.00694122
