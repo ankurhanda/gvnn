@@ -34,3 +34,6 @@ luarocks make gvnn-scm-1.rockspec
 #SO3 Layer 
 
 ![Montage-0](assets/so3_rot_example.png)
+
+#License 
+GPL
