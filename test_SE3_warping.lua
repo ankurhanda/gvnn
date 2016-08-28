@@ -1,4 +1,4 @@
-require 'stn'
+require 'gvnn'
 require 'torch'
 require 'image'
 
