@@ -1,5 +1,5 @@
 require 'nn'
-require 'stn'
+require 'gvnn'
 
 --dofile('ReverseXYOrder.lua')
 
