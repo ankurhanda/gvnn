@@ -30,13 +30,13 @@ We are still performing large scale experiments on data collected both from real
 luarocks make gvnn-scm-1.rockspec
 
 #SO3 Layer 
-Rotations are represented as so(3) 3-vector. This vector is turned into rotation matrix via the exponential map. For a more detailed view of the so(3) representation and exponential map read this tutorial from Ethan Eade: [Lie-Algebra Tutorial](http://www.ethaneade.com/latex2html/lie_groups/lie_groups.html). This is what the exponential map is [Exponential Map](http://www.ethaneade.com/latex2html/lie_groups/node37.html). The reason for choosing so3 representation is mainly due to its appealing properties when it comes to linearising rotations when doing iterative image alingment. 
+Rotations are represented as so(3) 3-vector. This vector is turned into rotation matrix via the exponential map. For a more detailed view of the so(3) representation and exponential map read this tutorial from Ethan Eade: [Lie-Algebra Tutorial](http://www.ethaneade.com/latex2html/lie_groups/lie_groups.html). This is what the exponential map is [Exponential Map](http://www.ethaneade.com/latex2html/lie_groups/node37.html). The reason for choosing so3 representation is mainly due to its appealing properties when it comes to linearising rotations for iterative image alingment in the classic linearise-solve-update rule. 
 
 The backprop derivatives of this rotation parameterisation is all you need to make sure you can insert this layer within a network - the derivatives are a bit involved but they look like this 
 
 ![Montage-1](assets/so3_layer_backward_pass.png)
 
-However, this derivative has singularity at (0,0,0) because of the division by the norm of the vector. Therefore, we have a threshold to check if the magnitude is small enough that we can use a first-order approximation of the exponential map. 
+However, this derivative has singularity at (0,0,0) because of the division by the norm of the vector. Therefore, we have a threshold to check if the magnitude is small enough that we can use a first-order approximation of the exponential map. The derivatives of this linearised version is nothing but the Generators of the map [Generators](http://www.ethaneade.com/latex2html/lie_groups/node36.html) 
 
 
 To set up 3D rotation warping, you first need to homogenise the x,y positions to [x, y, 1]^T, apply the inverse camera calibration matrix to get the ray in 3D. This ray is rotated with the rotation and then backprojected into the 2D plane with PinHoleCameraProjection layer and interpolated with bilinear interpolation.
@@ -96,17 +96,7 @@ r[1][1] = 0.2
 
 t = {input, r}
 
-out_i = tranet:forward(t)
-
-print(#out_i)
-
-out_r = rotation_net:forward(t)
-
-print(#out_r)
-
 out_w = warping_net:forward(t)
-
-print(#out_w)
 
 w = out_w[1]
 
@@ -115,8 +105,6 @@ image.display(w)
 
 image.save('warped.png', w)
 ```
-
-
 
 ![Montage-0](assets/so3_rot_example.png)
 
