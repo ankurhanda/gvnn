@@ -1,11 +1,7 @@
 require 'nn'
 require 'gvnn'
 
---dofile('ReverseXYOrder.lua')
-
-
 concat = nn.ConcatTable()
-
 
 height = 240
 width  = 320

@@ -30,6 +30,84 @@ We are still performing large scale experiments on data collected both from real
 luarocks make gvnn-scm-1.rockspec
 
 #SO3 Layer 
+To set up 3D rotation warping, you first need to homogenise the x,y positions to [x, y, 1]^T, apply the inverse camera calibration matrix to get the ray in 3D. This ray is rotated with the rotation and then backprojected into the 2D plane with PinHoleCameraProjection layer and interpolated with bilinear interpolation.
+
+```
+require 'nn'
+require 'gvnn'
+
+concat = nn.ConcatTable()
+
+height = 240
+width  = 320
+u0     = 160
+v0     = 120
+
+fx = 240
+fy = 240
+
+-- first branch is there to transpose inputs to BHWD, for the bilinear sampler
+tranet=nn.Sequential()
+tranet:add(nn.SelectTable(1))
+tranet:add(nn.Identity())
+tranet:add(nn.Transpose({2,3},{3,4}))
+
+rotation_net = nn.Sequential()
+rotation_net:add(nn.SelectTable(2))
+rotation_net:add(nn.TransformationRotationSO3())
+rotation_net:add(nn.Transform3DPoints_R(height, width, fx, fy, u0, v0))
+rotation_net:add(nn.PinHoleCameraProjectionBHWD(height, width, fx, fy, u0, v0))
+rotation_net:add(nn.ReverseXYOrder())
+
+concat:add(tranet)
+concat:add(rotation_net)
+
+warping_net = nn.Sequential()
+warping_net:add(concat)
+warping_net:add(nn.BilinearSamplerBHWD())
+warping_net:add(nn.Transpose({3,4},{2,3}))
+
+```
+
+This is how to use the previous network to warp and plot the image
+
+```
+require 'image'
+require 'nn'
+require 'torch'
+
+dofile('imagewarping.lua')
+
+x = image.loadPNG('linen1.png')
+input = torch.Tensor(1,1,240,320)
+input[1] = x
+
+r = torch.Tensor(1,3):zero()
+r[1][1] = 0.2
+
+t = {input, r}
+
+out_i = tranet:forward(t)
+
+print(#out_i)
+
+out_r = rotation_net:forward(t)
+
+print(#out_r)
+
+out_w = warping_net:forward(t)
+
+print(#out_w)
+
+w = out_w[1]
+
+image.display(x)
+image.display(w)
+
+image.save('warped.png', w)
+```
+
+
 
 ![Montage-0](assets/so3_rot_example.png)
 
