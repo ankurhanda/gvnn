@@ -125,6 +125,10 @@ For running on cuda just do :cuda() wherever needed. e.g. warping_net = warpinet
 
 #M-estimators
 
+
+#Future Improvements
+Bilinear interpolation can use the tex2D function within CUDA to speed up the interpolation. Also, need to add interpolation with taylor series expansion as done in classic PDE based variational optimisation methods.
+
 #License 
 This code is for mainly for research purposes and is licensed under GPL. If you'd like to use it for anything beyond research please contact us.
 <!--
