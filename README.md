@@ -126,7 +126,7 @@ For running on cuda just do :cuda() wherever needed. e.g. warping_net = warpinet
 #M-estimators
 
 #License 
-GPL
+This code is for mainly for research purposes and is licensed under GPL. If you'd like to use it for anything beyond research please contact us.
 <!--
 If you use the code, please consider citing the following 
 ```
