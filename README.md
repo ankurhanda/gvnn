@@ -108,7 +108,7 @@ image.display(w)
 image.save('warped.png', w)
 ```
 
-For running on cuda just do :cuda() wherever needed. e.g. warping_net = warpinet_net:cuda(), x = x:cuda() and r:cuda() 
+For running on cuda just do :cuda() wherever needed. e.g. warping_net = warpinet_net:cuda(), input = input:cuda() and r:cuda() 
 
 
 ![Montage-0](assets/so3_rot_example.png)
