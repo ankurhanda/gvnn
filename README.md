@@ -1,6 +1,6 @@
 Link to the paper [gvnn](http://arxiv.org/pdf/1607.07405.pdf)
 
-gvnn is inspired by the Spatial Transformer Networks (STN) paper that appeared in NIPS in 2015. However, ST were mainly limited to applying only 2D transformations to the input. We added a new set of transformations often needed for manipulating data in 3D geometric computer vision. These include the 3D counterparts of what were used in original STN together with a lot more new transformations.
+gvnn is inspired by the Spatial Transformer Networks (STN) paper that appeared in NIPS in 2015 and its open source code made available by [Moodstocks](https://github.com/qassemoquab/stnbhwd). However, ST were mainly limited to applying only 2D transformations to the input. We added a new set of transformations often needed for manipulating data in 3D geometric computer vision. These include the 3D counterparts of what were used in original STN together with a lot more new transformations.
 
 * SO3 layer   - Rotations are expressed in so3 vector (v1, v2, v3)
 * Euler layer - Rotations are also expressed in euler angles
