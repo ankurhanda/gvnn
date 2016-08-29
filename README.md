@@ -41,7 +41,7 @@ However, this derivative has singularity at (0,0,0) because of the division by t
 
 To set up 3D rotation warping, you first need to homogenise the x,y positions to [x, y, 1]^T, apply the inverse camera calibration matrix to get the ray in 3D. This ray is rotated with the rotation and then backprojected into the 2D plane with PinHoleCameraProjection layer and interpolated with bilinear interpolation.
 
-```
+``` lua 
 require 'nn'
 require 'gvnn'
 
@@ -80,7 +80,7 @@ warping_net:add(nn.Transpose({3,4},{2,3}))
 
 This is how to use the previous network to warp and plot the image
 
-```
+``` lua
 require 'image'
 require 'nn'
 require 'torch'
