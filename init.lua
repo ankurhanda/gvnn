@@ -1,7 +1,7 @@
 require 'nn'
 require 'cutorch'
-require 'libstn'
-require 'libcustn'
+require 'libgvnn'
+require 'libcugvnn'
 
 include('AffineTransformMatrixGenerator.lua')
 include('AffineGridGeneratorBHWD.lua')
