@@ -30,6 +30,13 @@ We are still performing large scale experiments on data collected both from real
 luarocks make gvnn-scm-1.rockspec
 
 #SO3 Layer 
+Rotations are represented as so(3) 3-vector. This vector is turned into rotation matrix via the exponential map. The backprop derivatives is all you need to make sure you can insert this layer within a network - the derivatives are a bit involved but they look like this 
+
+![Montage-1](assets/so3_layer_backward_pass.png.png)
+
+However, this derivative has singularity at (0,0,0) because of the division by the norm of the vector. Therefore, we have a threshold to check if the magnitude is small enough that we can use a first-order approximation of the exponential map. 
+
+
 To set up 3D rotation warping, you first need to homogenise the x,y positions to [x, y, 1]^T, apply the inverse camera calibration matrix to get the ray in 3D. This ray is rotated with the rotation and then backprojected into the 2D plane with PinHoleCameraProjection layer and interpolated with bilinear interpolation.
 
 ```
