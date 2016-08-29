@@ -93,6 +93,8 @@ input[1] = x
 
 r = torch.Tensor(1,3):zero()
 r[1][1] = 0.2
+--r[1][2] = 0.3
+--r[1][3] = 0.4
 
 t = {input, r}
 
