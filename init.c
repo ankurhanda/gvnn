@@ -8,13 +8,13 @@
 #include "generic/BilinearSamplerBHWD.c"
 #include "THGenerateFloatTypes.h"
 
-LUA_EXTERNC DLL_EXPORT int luaopen_libstn(lua_State *L);
+LUA_EXTERNC DLL_EXPORT int luaopen_libgvnn(lua_State *L);
 
-int luaopen_libstn(lua_State *L)
+int luaopen_libgvnn(lua_State *L)
 {
   lua_newtable(L);
   lua_pushvalue(L, -1);
-  lua_setglobal(L, "stn");
+  lua_setglobal(L, "gvnn");
 
   nn_FloatBilinearSamplerBHWD_init(L);
 
