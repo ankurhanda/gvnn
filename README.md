@@ -30,7 +30,7 @@ We are still performing large scale experiments on data collected both from real
 luarocks make gvnn-scm-1.rockspec
 
 #SO3 Layer 
-Rotations are represented as so(3) 3-vector. This vector is turned into rotation matrix via the exponential map. For a more detailed view of the so(3) representation and exponential map read this tutorial from Ethan Eade: [Lie-Algebra Tutorial](http://www.ethaneade.com/latex2html/lie_groups/lie_groups.html). This is what the exponential map is [Exponential Map](http://www.ethaneade.com/latex2html/lie_groups/node37.html). The reason for choosing so3 representation is mainly due to its appealing properties when it comes to linearising rotations for iterative image alingment in the classic linearise-solve-update rule. 
+Rotations are represented as so(3) 3-vector. This vector is turned into rotation matrix via the exponential map. For a more detailed view of the so(3) representation and exponential map read this tutorial from Ethan Eade: [Lie-Algebra Tutorial](http://www.ethaneade.com/latex2html/lie_groups/lie_groups.html). This is what the exponential map is [Exponential Map](http://www.ethaneade.com/latex2html/lie_groups/node37.html). The reason for choosing so3 representation is mainly due to its appealing properties when it comes to linearising rotations (via taylor series expansion) for iterative image alingment in the classic linearise-solve-update rule. 
 
 The backprop derivatives of this rotation parameterisation is all you need to make sure you can insert this layer within a network - the derivatives are a bit involved but they look like this 
 
@@ -109,6 +109,18 @@ image.save('warped.png', w)
 ```
 
 ![Montage-0](assets/so3_rot_example.png)
+
+#SE3 Layer
+
+#Optical Flow
+
+#Disparity
+
+#Nonrigid SO3
+
+#Nonrigid SE3
+
+#M-estimators
 
 #License 
 GPL
