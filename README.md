@@ -127,7 +127,7 @@ For running on cuda just do :cuda() wherever needed. e.g. warping_net = warpinet
 
 #License 
 GPL
-
+<!--
 If you use the code, please consider citing the following 
 ```
 @inproceedings{PatrauceanHC16,
@@ -150,3 +150,4 @@ If you use the code, please consider citing the following
     year={2015}
 }
 ```
+-->
