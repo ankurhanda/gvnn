@@ -5,9 +5,9 @@
 
 #include "BilinearSamplerBHWD.cu"
 
-LUA_EXTERNC DLL_EXPORT int luaopen_libcustn(lua_State *L);
+LUA_EXTERNC DLL_EXPORT int luaopen_libcugvnn(lua_State *L);
 
-int luaopen_libcustn(lua_State *L)
+int luaopen_libcugvnn(lua_State *L)
 {
   lua_newtable(L);
   cunn_BilinearSamplerBHWD_init(L);
