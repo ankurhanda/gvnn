@@ -114,16 +114,22 @@ For running on cuda just do :cuda() wherever needed. e.g. warping_net = warping_
 ![Montage-0](assets/so3_rot_example.png)
 
 #SE3 Layer
+expand...
 
 #Optical Flow
+expand...
 
 #Disparity
+expand...
 
 #Nonrigid SO3
+expand...
 
 #Nonrigid SE3
+expand...
 
 #M-estimators
+expand...
 
 
 #Future Improvements
