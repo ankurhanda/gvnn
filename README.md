@@ -117,18 +117,26 @@ For running on cuda just do :cuda() wherever needed. e.g. warping_net = warping_
 expand...
 
 #Optical Flow
+![Montage-0](assets/opticalflow.png)
 expand...
 
 #Disparity
+![Montage-0](assets/disparity_and_slanted_plane_disparity.png)
+expand...
+
+#Projection Layer
+![Montage-0](assets/projection_layer.png)
 expand...
 
 #Nonrigid SO3
 expand...
 
 #Nonrigid SE3
+![Montage-0](assets/non-rigid.png)
 expand...
 
 #M-estimators
+![Montage-0](assets/M-estimators.png)
 expand...
 
 
