@@ -90,7 +90,7 @@ require 'image'
 require 'nn'
 require 'torch'
 
-dofile('imagewarping.lua')
+dofile('imagewarpingSO3.lua')
 
 x = image.loadPNG('linen1.png')
 input = torch.Tensor(1,1,240,320)
