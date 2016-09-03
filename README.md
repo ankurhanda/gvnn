@@ -127,6 +127,7 @@ expand...
 
 #Disparity
 ![Montage-0](assets/disparity_and_slanted_plane_disparity.png)
+![Montage-1](assets/disparity_cnn.png)
 expand...
 
 #Projection Layer
