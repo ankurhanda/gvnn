@@ -119,6 +119,103 @@ For running on cuda just do :cuda() wherever needed. e.g. warping_net = warping_
 ![Montage-0](assets/so3_rot_example.png)
 
 #SE3 Layer
+``` lua
+require 'nn'
+require 'gvnn'
+
+--dofile('ReverseXYOrder.lua')
+
+concat = nn.ConcatTable()
+concat_Rt_depth = nn.ConcatTable()
+
+
+height = 480--240
+width  = 640--320
+u0     = 320--160
+v0     = 240--120
+
+fx =  480 --240
+fy = -480 --240
+
+-- first branch is there to transpose inputs to BHWD, for the bilinear sampler
+tranet=nn.Sequential()
+tranet:add(nn.SelectTable(1))
+tranet:add(nn.Identity())
+tranet:add(nn.Transpose({2,3},{3,4}))
+
+-- converts the 6-vector (3-vector so3 for rotation and 3-vector for translation)
+Rt_net = nn.Sequential()
+Rt_net:add(nn.SelectTable(2))
+Rt_net:add(nn.TransformationMatrix3x4SO3(true,false,true))
+
+depth = nn.Sequential()
+depth:add(nn.SelectTable(3))
+
+concat_Rt_depth:add(Rt_net)
+concat_Rt_depth:add(depth)
+
+Transformation3x4net = nn.Sequential()
+Transformation3x4net:add(concat_Rt_depth)
+Transformation3x4net:add(nn.Transform3DPoints_Rt(height, width, fx, fy, u0, v0))
+Transformation3x4net:add(nn.PinHoleCameraProjectionBHWD(height, width, fx, fy, u0, v0))
+Transformation3x4net:add(nn.ReverseXYOrder())
+
+concat:add(tranet)
+concat:add(Transformation3x4net)
+
+warping_net = nn.Sequential()
+warping_net:add(concat)
+warping_net:add(nn.BilinearSamplerBHWD())
+warping_net:add(nn.Transpose({3,4},{2,3}))
+```
+``` lua
+require 'gvnn'
+require 'torch'
+require 'image'
+
+dofile('imagewarpingSE3.lua')
+
+--local height=480
+--local width =360
+
+ref_rgb_image   = image.load('iclnuim/rgb/100.png')
+
+ref_depth_image = image.load('iclnuim/depth/100.png')
+ref_depth_image = (ref_depth_image*65535)/5000.0
+
+print(ref_rgb_image:size())
+print(ref_depth_image:size())
+
+--image.display(ref_rgb_image)
+--image.display(ref_depth_image)
+
+data_ref_rgb      = torch.Tensor(1,3,480,640)
+data_ref_rgb[1]   = ref_rgb_image
+
+data_ref_depth    = torch.Tensor(1,1,480,640)
+data_ref_depth[1] = ref_depth_image
+
+so3_t_vector      = torch.Tensor(1,6):uniform()
+
+-- tx, ty, tz, rx, ry, rz
+-- -0.00119339 -0.00449791 -0.00122229 0.00104319 -0.00694122 -0.00333668
+
+--- so3 and translation vector
+
+so3_t_vector[1][1] = 0--  0.00104319
+so3_t_vector[1][2] = 0-- -0.00694122
+so3_t_vector[1][3] = 0-- -0.00333668
+
+so3_t_vector[1][4] = 0-- -0.00119339
+so3_t_vector[1][5] = 0-- -0.00449791
+so3_t_vector[1][6] = 0-- -0.00122229
+
+inputTable = {data_ref_rgb:cuda(), so3_t_vector:cuda(), data_ref_depth:cuda()}
+
+outImage = warping_net:cuda():forward(inputTable)
+
+image.display(outImage[1])
+```
 expand...
 
 #Optical Flow
