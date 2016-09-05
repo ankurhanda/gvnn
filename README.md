@@ -1,4 +1,5 @@
 *gvnn: Neural Network Library for Geometric Vision* 
+
 *Ankur Handa, Michael Bloesch, Viorica Patraucean, Simon Stent, John McCormac, Andrew Davison*
 
 Link to the paper [gvnn](http://arxiv.org/pdf/1607.07405.pdf)
