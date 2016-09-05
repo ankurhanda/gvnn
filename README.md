@@ -4,7 +4,7 @@
 
 Link to the paper [gvnn](http://arxiv.org/pdf/1607.07405.pdf)
 
-gvnn is inspired by the Spatial Transformer Networks (STN) paper that appeared in NIPS in 2015 and its open source code made available by [Maxime Oquab](https://github.com/qassemoquab/stnbhwd). The code is self contained i.e. the original implementation of STN by Maxime is also within the repository. 
+gvnn is primarily intended for unsupervised learning using low-level vision. It is inspired by the Spatial Transformer Networks (STN) paper that appeared in NIPS in 2015 and its open source code made available by [Maxime Oquab](https://github.com/qassemoquab/stnbhwd). The code is self contained i.e. the original implementation of STN by Maxime is also within the repository. 
 
 STs were mainly limited to applying only 2D transformations to the input. We added a new set of transformations often needed for manipulating data in 3D geometric computer vision. These include the 3D counterparts of what were used in original STN together with a lot more new transformations and different M-estimators.
 
@@ -25,7 +25,7 @@ STs were mainly limited to applying only 2D transformations to the input. We add
 
 * M-estimators
 
-It is primarily intended for unsupervised learning using low-level vision. Below you will see some examples of how to use gvnn to do unsupervised learning. We plan to make this a comprehensive and complete library to bridge the gap between geometry and deeplearning. 
+Below you will see some examples of how to use gvnn to do unsupervised learning. We plan to make this a comprehensive and complete library to bridge the gap between geometry and deeplearning. 
 
 
 We are still performing large scale experiments on data collected both from real world and our previous work, [SceneNet](http://robotvault.bitbucket.org) to test our various different geometric computer vision algorithms e.g. dense image registration, 3D reconstruction and place recognition.
