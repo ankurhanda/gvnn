@@ -1,4 +1,4 @@
-*gvnn: Neural Network Library for Geometric Vision* 
+*gvnn: Neural Network Library for Geometric Vision*, ECCV Workshop on Deep Geometry, 2016 
 
 *Ankur Handa, Michael Bloesch, Viorica Patraucean, Simon Stent, John McCormac, Andrew Davison*
 
