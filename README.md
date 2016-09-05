@@ -25,7 +25,7 @@ STs were mainly limited to applying only 2D transformations to the input. We add
 
 * M-estimators
 
-We plan to make this a comprehensive and complete library to bridge the gap between geometry and deeplearning.
+It is primarily intended for unsupervised learning using low-level vision. Below you will see some examples of how to use gvnn to do unsupervised learning. We plan to make this a comprehensive and complete library to bridge the gap between geometry and deeplearning. 
 
 
 We are still performing large scale experiments on data collected both from real world and our previous work, [SceneNet](http://robotvault.bitbucket.org) to test our various different geometric computer vision algorithms e.g. dense image registration, 3D reconstruction and place recognition.
