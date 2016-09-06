@@ -26,12 +26,12 @@ function OpticalFlow2D:__init(height, width)
    self.height = height
    self.width = width
    
-   self.baseGrid = torch.Tensor(height, width, 3)
+   self.baseGrid = torch.Tensor(height, width, 2)
    for i=1,self.height do
-      self.baseGrid:select(3,2):select(1,i):fill(-1 + (i-1)/(self.height-1) * 2)
+      self.baseGrid:select(2,2):select(1,i):fill(-1 + (i-1)/(self.height-1) * 2)
    end
    for j=1,self.width do
-      self.baseGrid:select(3,1):select(2,j):fill(-1 + (j-1)/(self.width-1) * 2)
+      self.baseGrid:select(2,1):select(2,j):fill(-1 + (j-1)/(self.width-1) * 2)
    end
 end
 
@@ -39,13 +39,13 @@ function OpticalFlow2D:updateOutput(optic_flow)
 
    local current_optic_flow  = optic_flow
 
-   assert(PerPixelAffineMatrixParams:nDimension()==4
-	  and PerPixelAffineMatrixParams:size(2)==self.height
-          and PerPixelAffineMatrixParams:size(3)==self.width
-          and PerPixelAffineMatrixParams:size(4)==2
+   assert(current_optic_flow:nDimension()==4
+	  and current_optic_flow:size(2)==self.height
+          and current_optic_flow:size(3)==self.width
+          and current_optic_flow:size(4)==2
           , 'please input affine per-pixel transformations (bxhxwx2)')
 
-   local batchsize = PerPixelAffineMatrixParams:size(1)
+   local batchsize = current_optic_flow:size(1)
    
    if self.batchGrid:size(1) ~= batchsize then
 
