@@ -59,7 +59,7 @@ function Disparity1D:updateOutput(disparity1D)
    end
 
    self.output:resize(batchsize, self.height, self.width, 2)
-   self.output:select(4,2):copy(torch.add(self.baseGrid:select(2,2),current_disparity))
+   self.output:select(4,1):copy(torch.add(self.baseGrid:select(2,1),current_disparity))
    
    return self.output
 
@@ -68,8 +68,8 @@ end
 function Disparity1D:updateGradInput(disparity1D, _gradGrid)
 
    self.gradInput:resize(disparity1D:size(1), self.height, self.width, 2):zero():typeAs(disparity1D)
-   self.gradInput:select(4,2):copy(_gradGrid:select(4,2))
-   self.gradInput:select(4,1):zero()
+   self.gradInput:select(4,1):copy(_gradGrid:select(4,1))
+   self.gradInput:select(4,2):zero()
 
    return self.gradInput
 
