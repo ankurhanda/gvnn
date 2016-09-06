@@ -20,6 +20,7 @@ local Disparity1D, parent = torch.class('nn.Disparity1DBHWD', 'nn.Module')
 ]]
 
 function Disparity1D:__init(height, width)
+    
    parent.__init(self)
    assert(height > 1)
    assert(width > 1)
@@ -34,6 +35,7 @@ function Disparity1D:__init(height, width)
    for j=1,self.width do
       self.baseGrid:select(2,1):select(2,j):fill(-1 + (j-1)/(self.width-1) * 2)
    end
+
 end
 
 function Disparity1D:updateOutput(disparity1D)
