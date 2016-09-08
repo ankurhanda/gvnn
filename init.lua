@@ -17,7 +17,7 @@ include('Transform3DPoints_depth.lua')
 include('PinHoleCameraProjectionBHWD.lua')
 include('ReverseXYOrder.lua')
 include('DenseAffineOpticFlowBHWD.lua')
-include('NonRigidSE2.lua')
+include('NonRigidPerPixelSE2.lua')
 include('NonRigidPerPixelSO3.lua')
 include('NonRigidPerPixelSE3.lua')
 
