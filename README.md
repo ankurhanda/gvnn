@@ -38,7 +38,7 @@ We are also performing large scale experiments on data collected both from real 
 luarocks make gvnn-scm-1.rockspec
 
 
-#Unit tests
+#Unit tests - Forward/Backward pass checks
 
 th
 
