@@ -273,7 +273,7 @@ GPL
 
 If you find the code useful, please consider citing the following 
 ```
-@inproceedings{PatrauceanHC16,
+@inproceedings{Handa:etal:ECCVW16,
   author    = {Ankur Handa and 
                Michael Bloesch and 
                Viorica P{\u a}tr{\u a}ucean and
