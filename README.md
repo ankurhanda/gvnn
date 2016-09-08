@@ -37,6 +37,16 @@ We are also performing large scale experiments on data collected both from real 
 
 luarocks make gvnn-scm-1.rockspec
 
+
+#Unit tests
+
+th
+
+require 'gvnn'
+
+dofile('test.lua')
+
+
 #SO3 Layer 
 Rotations are represented as so(3) 3-vector. This vector is turned into rotation matrix via the exponential map. For a more detailed view of the so(3) representation and exponential map read this tutorial from Ethan Eade: [Lie-Algebra Tutorial](http://www.ethaneade.com/latex2html/lie_groups/lie_groups.html). This is what the exponential map is [Exponential Map](http://www.ethaneade.com/latex2html/lie_groups/node37.html). Also, Tom Drummond's notes on Lie-Algebra are a great source to learn about exponential maps [Tom Drummond's notes](https://dl.dropboxusercontent.com/u/23948930/Papers/3DGeometry.pdf). The reason for choosing so3 representation is mainly due to its appealing properties when linearising rotations (via taylor series expansion) for iterative image alignment via classic linearise-solve-update rule. The figure below shows how linearisation for SO3 is fitting a local plane on the sphere 
 
@@ -259,7 +269,7 @@ Bilinear interpolation can use the tex2D function within CUDA to speed up the in
 
 #License 
 This code is for mainly for research purposes and is licensed under GPL. If you'd like to use it for anything beyond research please contact us.
-<!--
+
 If you use the code, please consider citing the following 
 ```
 @inproceedings{PatrauceanHC16,
@@ -270,7 +280,7 @@ If you use the code, please consider citing the following
                John McCormac and
                Andrew Davison},
   title     = {gvnn: Neural Network Library for Geometric Computer Vision},
-  booktitle = {arXiv:1607.07405},
+  booktitle = {ECCV Workshop on Geometry Meets Deep Learning},
   year      = {2016}
 }
 ```
@@ -282,4 +292,3 @@ If you use the code, please consider citing the following
     year={2015}
 }
 ```
--->
