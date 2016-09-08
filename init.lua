@@ -19,5 +19,6 @@ include('ReverseXYOrder.lua')
 include('DenseAffineOpticFlowBHWD.lua')
 include('NonRigidSE2.lua')
 include('NonRigidRotationSO3.lua')
+include('NonRigidPerPixelSE3.lua')
 
 return nn

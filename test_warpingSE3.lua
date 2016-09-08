@@ -31,11 +31,11 @@ so3_t_vector      = torch.Tensor(1,6):uniform()
 
 --- so3 and translation vector
 
-so3_t_vector[1][1] = 0--  0.00104319
-so3_t_vector[1][2] = 0-- -0.00694122
-so3_t_vector[1][3] = 0-- -0.00333668
+so3_t_vector[1][1] =   0.00104319
+so3_t_vector[1][2] =  -0.00694122
+so3_t_vector[1][3] =  -0.00333668
 
-so3_t_vector[1][4] = 0-- -0.00119339
+so3_t_vector[1][4] = 0-- -0.0119339
 so3_t_vector[1][5] = 0-- -0.00449791
 so3_t_vector[1][6] = 0-- -0.00122229
 
