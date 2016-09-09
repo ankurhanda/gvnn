@@ -21,4 +21,7 @@ include('NonRigidPerPixelSE2.lua')
 include('NonRigidPerPixelSO3.lua')
 include('NonRigidPerPixelSE3.lua')
 
+-- M-estimators
+include('Huber.lua')
+
 return nn

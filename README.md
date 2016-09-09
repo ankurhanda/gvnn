@@ -40,11 +40,7 @@ luarocks make gvnn-scm-1.rockspec
 
 #Unit tests - Forward/Backward pass checks
 
-th
-
-require 'gvnn'
-
-dofile('test.lua')
+All the relevant unit tests are in test.lua. The gif image below shows how to run the this file and check for any forward/backward pass errors in the layer implementation.
 
 <img src="assets/testing.gif" width="980">
 
