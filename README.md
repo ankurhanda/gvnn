@@ -269,7 +269,7 @@ expand...
 Bilinear interpolation can use the tex2D function within CUDA to speed up the interpolation. Also, need to add interpolation with taylor series expansion as done in classic PDE based variational optimisation methods. Warping should be done at a higher resolution and blurred and downsampled later on i.e. DBW model used in Unger's super-resolution method.
 
 #License 
-GPL
+GPL. We would like to thank Dyson Technologies Limited for their kind funding.
 
 If you find the code useful, please consider citing the following 
 ```
