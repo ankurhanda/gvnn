@@ -269,7 +269,7 @@ Bilinear interpolation can use the tex2D function within CUDA to speed up the in
 #License 
 GPL. We would like to thank Dyson Technologies Limited for supporting this work.
 
-#Concat 
+#Contact 
 
 Ankur Handa (handa(dot)ankur(at)gmail(dot)com)
 
