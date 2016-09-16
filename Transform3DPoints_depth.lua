@@ -50,10 +50,9 @@ function Transform3DPoints_depth:__init(height, width, fx, fy, u0, v0)
    self.baseGrid:select(3,3):fill(1)
    self.baseGrid:select(3,4):fill(1)
 
-   self.batchGrid = torch.Tensor(1, height, width, 4):copy(self.baseGrid)
-   self.points3D  = torch.Tensor(1, height, width, 4):fill(1)
+   self.points3D  = torch.Tensor(1, height, width, 3):fill(1)
  
-   self.transformationMatrix = torch.Tensor(1,3,4):uniform()
+   --self.transformationMatrix = torch.Tensor(1,3,4):uniform()
  
 end
 
@@ -64,8 +63,8 @@ function Transform3DPoints_depth:updateOutput(depth)
    local batchsize = depth:size(1)
 
    if self.points3D:size(1) ~= batchsize then 
-	self.points3D:resize(batchsize,self.height,self.width,4)
-	self.points:fill(1)
+	self.points3D:resize(batchsize,self.height,self.width,3)
+	self.points3D:fill(1)
    end
   
    for b = 1, batchsize do
@@ -77,24 +76,14 @@ function Transform3DPoints_depth:updateOutput(depth)
 	   local u_times_depth = torch.cmul(u_minus_u0,depths[b])	
 	   local v_times_depth = torch.cmul(v_minus_v0,depths[b])	
 
-           self.points3D[b]:select(3,1):copy(u_times_depth) 	
+       self.points3D[b]:select(3,1):copy(u_times_depth) 	
 	   self.points3D[b]:select(3,2):copy(v_times_depth)
 	   self.points3D[b]:select(3,3):copy(depths[b]) 	
 
    end
  
-   local flattenedBatchGrid  = self.points3D:view(batchsize, self.width*self.height, 4)
-   local flattenedOutput     = torch.Tensor(batchsize, self.width*self.height, 3):zero()
-
-   -- Matrix multiplication of 3x4 matrix with 4x1 homogenous points 
-   torch.bmm(flattenedOutput, flattenedBatchGrid, self.transformationMatrix:transpose(2,3))
-
    -- 3D points
-   self.output = flattenedOutput:view(batchsize,self.height,self.width,3)
-  
-   	 
-   -- 3D points
-   --self.output = self.points3D--flattenedOutput:view(batchsize,self.height,self.width,3)
+   self.output = self.points3D
   
    return self.output
 
@@ -103,15 +92,14 @@ end
 function Transform3DPoints_depth:updateGradInput(_input, _gradGrid)
    
    --_transformMatrix, depths = unpack(transformMatrix_and_depths)
-   local batchsize = 1
  
    local depths = _input  
+    
+   local batchsize = depth:size(1)
 
    local gradGrid = _gradGrid
 
    local flattenedGradGrid = gradGrid:view(batchsize, self.width*self.height, 3)
-
-   --local points3D          = self.points3D:view(batchsize, self.width*self.height, 3)
 
    --- saving the grads with respect to the transformed 3d points
    local x1 = gradGrid:select(4,1)	
@@ -119,19 +107,16 @@ function Transform3DPoints_depth:updateGradInput(_input, _gradGrid)
    local x3 = gradGrid:select(4,3)
 
    --- do d * R * [x y z] -- + t 		
-   local Rp = torch.Tensor(1, self.height, self.width, 4):zero()
+   local Rp = torch.Tensor(batchsize, self.height, self.width, 3):zero()
 
    --- This should be changed to [ (u-u0)/fx, (v-v0)/fy, 1]
-   Rp:select(4,1):copy(self.baseGrid:select(3,1))
-   Rp:select(4,2):copy(self.baseGrid:select(3,2))
-   Rp:select(4,3):copy(self.baseGrid:select(3,3))
+   Rp:select(3,1):copy(self.baseGrid:select(3,1))
+   Rp:select(3,2):copy(self.baseGrid:select(3,2))
+   Rp:select(3,3):copy(self.baseGrid:select(3,3))
 
-   local Rpt = torch.bmm(Rp:view(1, self.height*self.width,4), self.transformationMatrix:transpose(2,3))
-   Rpt = Rpt:view(batchsize, self.height, self.width, 3)
-
-   local y1 = Rpt:select(4,1)	
-   local y2 = Rpt:select(4,2)	
-   local y3 = Rpt:select(4,3)
+   local y1 = Rp:select(3,1)	
+   local y2 = Rp:select(3,2)	
+   local y3 = Rp:select(3,3)
    
    self.gradInput = torch.add(torch.add(torch.cmul(x1,y1),torch.cmul(x2,y2)),torch.cmul(x3,y3))   
 
