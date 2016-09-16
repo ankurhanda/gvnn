@@ -2,22 +2,6 @@ local Transform3DPoints_depth, parent = torch.class('nn.Transform3DPoints_depth'
 
 --[[
 
-   PinHoleCameraProjectionBHWD(height, width) :
-   PinHoleCameraProjectionBHWD:updateOutput(transformMatrix)
-   PinHoleCameraProjectionBHWD:updateGradInput(transformMatrix, gradGrids)
-
-   PinHoleCameraProjectionBHWD will take 2x3 an affine image transform matrix (homogeneous 
-   coordinates) as input, and output a grid, in normalized coordinates* that, once used
-   with the Bilinear Sampler, will result in an affine transform.
-
-   PinHoleCameraProjection 
-   - takes (B,2,3)-shaped transform matrices as input (B=batch).
-   - outputs a grid in BHWD layout, that can be used directly with BilinearSamplerBHWD
-   - initialization of the previous layer should biased towards the identity transform :
-      | 1  0  0 |
-      | 0  1  0 |
-
-   *: normalized coordinates [-1,1] correspond to the boundaries of the input image. 
 
 ]]--
 
