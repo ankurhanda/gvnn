@@ -210,9 +210,9 @@ function gvnntest.Transform3DPoints_depth_single()
    mytester:assertlt(err,precision, 'error on state ')
 
    -- IO
-   --local ferr,berr = jac.testIO(module,input)
-   --mytester:asserteq(ferr, 0, torch.typename(module) .. ' - i/o forward err ')
-   --mytester:asserteq(berr, 0, torch.typename(module) .. ' - i/o backward err ')
+   local ferr,berr = jac.testIO(module,depth)
+   mytester:asserteq(ferr, 0, torch.typename(module) .. ' - i/o forward err ')
+   mytester:asserteq(berr, 0, torch.typename(module) .. ' - i/o backward err ')
 
 end
 

@@ -54,11 +54,11 @@ end
 
 function Transform3DPoints_depth:updateOutput(depth)
 
-   depths = depth
+   local depths = depth
 
    local batchsize = depth:size(1)
 
-   if self.points3D:size(1) ~= batchsize then 
+   if batchsize > 1 then 
 	    
         self.points3D:resize(batchsize,self.height,self.width,3)
 	    self.points3D:fill(1)
