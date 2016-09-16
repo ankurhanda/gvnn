@@ -549,16 +549,16 @@ mytester:add(gvnntest)
    end
 --end
 
---stn.test("TransformationMatrix3x4GeneratorSO3_single")
---stn.test("DenseAffineOpticFlowBHWD_single")
---stn.test("NonRigidSE2_single")
---stn.test("NonRigidRotationSO3_single")
-gvnn.test("NonRigidPerPixelSE3_single")
---stn.test("PHCP_single")
---stn.test("TransformationRotationSO3_single")
---stn.test("Transform3DPoints_R_single")
---stn.test("Transform3DPoints_Rt_single")
---stn.test("Transform3DPoints_depth_single")
+--gvnn.test("TransformationMatrix3x4GeneratorSO3_single")
+--gvnn.test("DenseAffineOpticFlowBHWD_single")
+--gvnn.test("NonRigidSE2_single")
+--gvnn.test("NonRigidRotationSO3_single")
+--gvnn.test("NonRigidPerPixelSE3_single")
+--gvnn.test("PHCP_single")
+--gvnn.test("TransformationRotationSO3_single")
+--gvnn.test("Transform3DPoints_R_single")
+--gvnn.test("Transform3DPoints_Rt_single")
+gvnn.test("Transform3DPoints_depth_single")
 
 --end
 

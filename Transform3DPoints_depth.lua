@@ -95,7 +95,7 @@ function Transform3DPoints_depth:updateGradInput(_input, _gradGrid)
  
    local depths = _input  
     
-   local batchsize = depth:size(1)
+   local batchsize = depths:size(1)
 
    local gradGrid = _gradGrid
 
