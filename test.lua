@@ -196,7 +196,7 @@ end
 function gvnntest.Transform3DPoints_depth_single()
    local height = 3--torch.random(2,5)
    local width  = 3--torch.random(2,5)
-   local depth  = torch.zeros(1, 3, 3):uniform()
+   local depth  = torch.zeros(4, 3, 3):uniform()
 
    local fx = 1
    local fy = 1
