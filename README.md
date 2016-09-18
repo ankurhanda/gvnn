@@ -251,7 +251,7 @@ Unsupervised CNN for Single View Depth Estimation: Geometry to the rescue. *Ravi
 #Projection Layer
 The projection layer allows to project 3D data onto a 2D image plane via the projection matrix (in our case we use pin-hole camera projection matrix). This is extremely useful for data involving any 3D point cloud, depth and/or mesh and their projections in the 2D plane. This is differentiable only upto a point *i.e.* the forward/backward pass checks fail if the z-coordinate is below a certain threshold.
 
-![Montage-1](assets/differentiable_renderer.png)
+<img src="assets/differentiable_renderer.png" align="middle">
 ![Montage-0](assets/projection_layer.png)
 
 #Lens Distortion
