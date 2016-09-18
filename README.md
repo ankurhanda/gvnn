@@ -246,12 +246,13 @@ Again, standard low-level vision provides an intuitively appealing way to do sel
 ![Montage-0](assets/disparity_and_slanted_plane_disparity.png)
 ![Montage-1](assets/disparity_cnn.png)
 
-Unsupervised CNN for single view depth estimation: Geometry to the rescue. *Ravi Garg, Vijay Kumar BG, Gustavo Carneiro, Ian Reid*, ECCV 2016.
+Unsupervised CNN for Single View Depth Estimation: Geometry to the rescue. *Ravi Garg, Vijay Kumar BG, Gustavo Carneiro, Ian Reid*, ECCV 2016.
 
 #Projection Layer
+The projection layer allows to project 3D data onto a 2D image plane via the projection matrix (in our case we use pin-hole camera projection matrix). This is extremely useful for data involving any 3D point cloud, depth and/or mesh and their projections in the 2D plane. This is differentiable only upto a point *i.e.* the forward/backward pass checks fail if the z-coordinate is below a certain threshold.
+
 ![Montage-1](assets/differentiable_renderer.png)
 ![Montage-0](assets/projection_layer.png)
-expand...
 
 #Lens Distortion
 ![Montage-0](assets/Lens-Distortion.png)
@@ -261,13 +262,16 @@ expand...
 expand...
 
 #Nonrigid SE3
+Tracking non-rigid deformable objects is possible via a full dense per-pixel SE3 motion field. We provide a non-rigid se3 layer which predicts per-pixel se3 vector that allows to warp one depth image onto another as a means to do self-supervised learning.
+
 ![Montage-1](assets/se3_nets.png)
 ![Montage-0](assets/non-rigid.png)
-expand...
+
+SE3-Nets: Learning Rigid Body Motion using Deep Neural Networks, Arunkumar Byravan and Dieter Fox, arXiv, 2016.
 
 #M-estimators
+M-estimators have a long history in traditional computer vision and statistics. Michael Black's early papers in the 90s provide a compendium of various m-estimators and how most of them are superior to the standard L2 loss function and their ability to cull the outliers from the estimation of model parameters. We provide 4 different m-estimators namely, L2, Huber, Cauchy and Tukey.
 ![Montage-0](assets/M-estimators.png)
-expand...
 
 
 #Future Improvements
