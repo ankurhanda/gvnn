@@ -232,14 +232,21 @@ image.display(outImage[1])
 expand...
 
 #Optical Flow
+Optical flow is a 2D motion vector per-pixel. In many standard computer vision formulations, it is obtained via the solutions of a partial differential equations involving a data term which measures the pixel colour discrepency between the reference image at time *t* and a new image at time *t+1*, and a regulariser which helps smooth out the flow vectors at the neighbouring pixels. We provide two formulations of the optical flow vector *i.e.* the standard minimal parameterisation 2D vector and an over-parameterised 6DoF optical flow. Below, we show an example of how to use this layer to do self-supervised learning. The optical flow is predicted by a convolutional LSTM which is used to warp the frame at time *t* on frame at *t+1*. The relevant paper and code is available [here](https://github.com/viorik/ConvLSTM). 
+
 ![Montage-0](assets/opticalflow.png)
 ![Montage-1](assets/optical_flow_lstm.png)
-expand...
+
+Spatio-temporal autoencoder with differential memory. *Viorica Patraucean, Ankur Handa, Roberto Cipolla*, ICLRWorkshop Track 2016
+
 
 #Disparity
+Again, standard low-level vision provides an intuitively appealing way to do self-supervised learning. Now let us imagine instead of two frames in a video what if we had a stereo pair? We can then warp the left frame on top of the right in a similar way where the network instead predicts the disparity. 
+
 ![Montage-0](assets/disparity_and_slanted_plane_disparity.png)
 ![Montage-1](assets/disparity_cnn.png)
-expand...
+
+Unsupervised CNN for single view depth estimation: Geometry to the rescue. *Ravi Garg, Vijay Kumar BG, Gustavo Carneiro, Ian Reid*, ECCV 2016.
 
 #Projection Layer
 ![Montage-1](assets/differentiable_renderer.png)
