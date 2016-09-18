@@ -267,7 +267,7 @@ Tracking non-rigid deformable objects is possible via a full dense per-pixel SE3
 ![Montage-1](assets/se3_nets.png)
 ![Montage-0](assets/non-rigid.png)
 
-SE3-Nets: Learning Rigid Body Motion using Deep Neural Networks, Arunkumar Byravan and Dieter Fox, arXiv, 2016.
+SE3-Nets: Learning Rigid Body Motion using Deep Neural Networks, *Arunkumar Byravan and Dieter Fox*, arXiv, 2016.
 
 #M-estimators
 M-estimators have a long history in traditional computer vision and statistics. Michael Black's early papers in the 90s provide a compendium of various m-estimators and how most of them are superior to the standard L2 loss function and their ability to cull the outliers from the estimation of model parameters. We provide 4 different m-estimators namely, L2, Huber, Cauchy and Tukey.
