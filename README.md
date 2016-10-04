@@ -37,6 +37,12 @@ We are also performing large scale experiments on data collected both from real 
 
 luarocks make gvnn-scm-1.rockspec
 
+#How to run gvnn on just CPU
+
+* Comment out require 'libcugvnn' from init.lua.
+* Use the CMakeLists_CPU.txt *i.e.* copy CMakeLists_CPU.txt to CMakeLists.txt.
+* Do a fresh install of gvnn and if possible uninstall the previous gvnn version.
+
 
 #Unit tests - Forward/Backward pass checks
 
