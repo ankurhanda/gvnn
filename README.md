@@ -34,7 +34,7 @@ We are also performing large scale experiments on data collected both from real 
 
 #Recommendation
 
-Please do a fresh pull in case you spot any errors since the repository is always getting updated regularly.
+Please do a fresh pull in case you spot any errors since the repository is getting updated regularly.
 
 #Installation 
 
