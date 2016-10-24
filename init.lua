@@ -20,7 +20,8 @@ include('DenseAffineOpticFlowBHWD.lua')
 include('NonRigidPerPixelSE2.lua')
 include('NonRigidPerPixelSO3.lua')
 include('NonRigidPerPixelSE3.lua')
-
+include('Disparity1D.lua')
+include('OpticalFlow2D.lua')
 -- M-estimators
 --include('Huber.lua')
 

@@ -90,6 +90,42 @@ function gvnntest.DenseAffineOpticFlowBHWD_single()
 
 end
 
+function gvnntest.Disparity1D_single()
+
+   local height = torch.random(2,5)
+   local width  = torch.random(2,5)
+   
+   local input  = torch.zeros(1, height,width,1):uniform()
+   local module = nn.Disparity1DBHWD(height, width)
+	
+   local err = jac.testJacobian(module,input)
+   mytester:assertlt(err,precision, 'error on state ')
+
+   -- IO
+   local ferr,berr = jac.testIO(module,input)
+   mytester:asserteq(ferr, 0, torch.typename(module) .. ' - i/o forward err ')
+   mytester:asserteq(berr, 0, torch.typename(module) .. ' - i/o backward err ')
+
+end
+
+function gvnntest.OpticalFlow2D_single()
+
+   local height = torch.random(2,5)
+   local width  = torch.random(2,5)
+   
+   local input  = torch.zeros(1, height,width,2):uniform()
+   local module = nn.OpticalFlow2DBHWD(height, width)
+	
+   local err = jac.testJacobian(module,input)
+   mytester:assertlt(err,precision, 'error on state ')
+
+   -- IO
+   local ferr,berr = jac.testIO(module,input)
+   mytester:asserteq(ferr, 0, torch.typename(module) .. ' - i/o forward err ')
+   mytester:asserteq(berr, 0, torch.typename(module) .. ' - i/o backward err ')
+
+end
+
 function gvnntest.NonRigidSE2_single()
 
 
@@ -558,7 +594,9 @@ mytester:add(gvnntest)
 --gvnn.test("TransformationRotationSO3_single")
 --gvnn.test("Transform3DPoints_R_single")
 --gvnn.test("Transform3DPoints_Rt_single")
-gvnn.test("Transform3DPoints_depth_single")
+--gvnn.test("Transform3DPoints_depth_single")
+--gvnn.test("Disparity1D_single")
+gvnn.test("OpticalFlow2D_single")
 
 --end
 

@@ -30,11 +30,13 @@ function Disparity1D:__init(height, width)
    self.baseGrid = torch.Tensor(height, width, 2)
 
    for i=1,self.height do
-      self.baseGrid:select(2,2):select(1,i):fill(-1 + (i-1)/(self.height-1) * 2)
+      self.baseGrid:select(3,2):select(1,i):fill(-1 + (i-1)/(self.height-1) * 2)
    end
    for j=1,self.width do
-      self.baseGrid:select(2,1):select(2,j):fill(-1 + (j-1)/(self.width-1) * 2)
+      self.baseGrid:select(3,1):select(2,j):fill(-1 + (j-1)/(self.width-1) * 2)
    end
+
+   self.batchGrid = torch.Tensor(1, height, width, 2):copy(self.baseGrid)
 
 end
 
@@ -61,7 +63,8 @@ function Disparity1D:updateOutput(disparity1D)
    end
 
    self.output:resize(batchsize, self.height, self.width, 2)
-   self.output:select(4,1):copy(torch.add(self.baseGrid:select(2,1),current_disparity))
+   self.output:select(4,1):copy(torch.add(self.baseGrid:select(3,1),current_disparity))
+   self.output:select(4,2):copy(self.baseGrid:select(3,2))
    
    return self.output
 
@@ -70,6 +73,7 @@ end
 function Disparity1D:updateGradInput(disparity1D, _gradGrid)
 
    self.gradInput:resize(disparity1D:size(1), self.height, self.width, 1):zero():typeAs(disparity1D)
+   
    self.gradInput:select(4,1):copy(_gradGrid:select(4,1))
    --self.gradInput:select(4,2):zero()
 
