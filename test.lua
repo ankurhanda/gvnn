@@ -595,8 +595,8 @@ mytester:add(gvnntest)
 --gvnn.test("Transform3DPoints_R_single")
 --gvnn.test("Transform3DPoints_Rt_single")
 --gvnn.test("Transform3DPoints_depth_single")
---gvnn.test("Disparity1D_single")
-gvnn.test("OpticalFlow2D_single")
+gvnn.test("Disparity1D_single")
+--gvnn.test("OpticalFlow2D_single")
 
 --end
 

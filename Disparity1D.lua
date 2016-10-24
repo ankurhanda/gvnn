@@ -20,7 +20,6 @@ local Disparity1D, parent = torch.class('nn.Disparity1DBHWD', 'nn.Module')
 ]]
 
 function Disparity1D:__init(height, width)
-    
    parent.__init(self)
    assert(height > 1)
    assert(width > 1)
@@ -28,7 +27,6 @@ function Disparity1D:__init(height, width)
    self.width = width
    
    self.baseGrid = torch.Tensor(height, width, 2)
-
    for i=1,self.height do
       self.baseGrid:select(3,2):select(1,i):fill(-1 + (i-1)/(self.height-1) * 2)
    end
@@ -48,7 +46,7 @@ function Disparity1D:updateOutput(disparity1D)
 	  and current_disparity:size(2)==self.height
           and current_disparity:size(3)==self.width
           and current_disparity:size(4)==1
-          , 'please input affine per-pixel transformations (bxhxwx2)')
+          , 'please input disparity (bxhxwx1)')
 
    local batchsize = current_disparity:size(1)
    
@@ -63,19 +61,17 @@ function Disparity1D:updateOutput(disparity1D)
    end
 
    self.output:resize(batchsize, self.height, self.width, 2)
-   self.output:select(4,1):copy(torch.add(self.baseGrid:select(3,1),current_disparity))
-   self.output:select(4,2):copy(self.baseGrid:select(3,2))
-   
+   self.output:select(4,1):copy(torch.add(self.batchGrid:select(4,1), current_disparity))
+   self.output:select(4,2):copy(self.batchGrid:select(4,2))
+
    return self.output
 
 end
 
 function Disparity1D:updateGradInput(disparity1D, _gradGrid)
 
-   self.gradInput:resize(disparity1D:size(1), self.height, self.width, 1):zero():typeAs(disparity1D)
-   
-   self.gradInput:select(4,1):copy(_gradGrid:select(4,1))
-   --self.gradInput:select(4,2):zero()
+   self.gradInput:resizeAs(disparity1D):zero():typeAs(disparity1D)
+   self.gradInput:copy(_gradGrid:select(4,1))
 
    return self.gradInput
 
