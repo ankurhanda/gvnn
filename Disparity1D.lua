@@ -69,9 +69,9 @@ end
 
 function Disparity1D:updateGradInput(disparity1D, _gradGrid)
 
-   self.gradInput:resize(disparity1D:size(1), self.height, self.width, 2):zero():typeAs(disparity1D)
+   self.gradInput:resize(disparity1D:size(1), self.height, self.width, 1):zero():typeAs(disparity1D)
    self.gradInput:select(4,1):copy(_gradGrid:select(4,1))
-   self.gradInput:select(4,2):zero()
+   --self.gradInput:select(4,2):zero()
 
    return self.gradInput
 
