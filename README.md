@@ -32,6 +32,9 @@ Below you will see some examples of how to use gvnn to set up architectures for 
 
 We are also performing large scale experiments on data collected both from real world and our previous work, [SceneNet](http://robotvault.bitbucket.org) to test different geometric computer vision algorithms *e.g.* dense image registration, 3D reconstruction and place recognition for loop closure.
 
+#Recommendation
+
+Please do a fresh pull in case you spot any errors since the repository is always getting updated regularly.
 
 #Installation 
 
