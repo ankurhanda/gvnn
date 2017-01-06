@@ -27,6 +27,7 @@ function BilinearSamplerBHWD:check(input, gradOutput)
    local inputImages = input[1]
 	local grids = input[2]
 
+   assert(inputImages:isContiguous(), 'Input images have to be contiguous')
    assert(inputImages:nDimension()==4)
    assert(grids:nDimension()==4)
    assert(inputImages:size(1)==grids:size(1)) -- batch
