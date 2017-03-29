@@ -69,7 +69,7 @@ end
 
 function OpticalFlow2D:updateGradInput(optic_flow, _gradGrid)
 
-   self.gradInput:resizeAs(optic_flow):zero():typeAs(optical_flow)
+   self.gradInput:resizeAs(optic_flow):zero():typeAs(optic_flow)
    self.gradInput:copy(_gradGrid)
 
    return self.gradInput
