@@ -4,7 +4,9 @@
 
 Link to the paper [gvnn](http://arxiv.org/pdf/1607.07405.pdf)
 
-##What is gvnn?
+==============
+What is gvnn?
+=============
 
 gvnn is primarily intended for self-supervised learning using low-level vision. It is inspired by the Spatial Transformer Networks (STN) paper that appeared in NIPS in 2015 and its open source code made available by [Maxime Oquab](https://github.com/qassemoquab/stnbhwd). The code is self contained *i.e.* the original implementation of STN by Maxime is also within the repository. 
 
