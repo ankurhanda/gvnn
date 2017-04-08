@@ -4,7 +4,6 @@
 
 Link to the paper [gvnn](http://arxiv.org/pdf/1607.07405.pdf)
 
-==============
 What is gvnn?
 =============
 
@@ -34,22 +33,26 @@ Below you will see some examples of how to use gvnn to set up architectures for 
 
 We are also performing large scale experiments on data collected both from real world and our previous work, [SceneNet](http://robotvault.bitbucket.org) to test different geometric computer vision algorithms *e.g.* dense image registration, 3D reconstruction and place recognition for loop closure.
 
-#Recommendation
+Recommendation
+=============
 
 Please do a fresh pull in case you spot any errors since the repository is getting updated regularly.
 
-#Installation 
+Installation 
+=============
 
 luarocks make gvnn-scm-1.rockspec
 
-#How to run gvnn on just CPU
+How to run gvnn on just CPU
+=============
 
 * Comment out require 'libcugvnn' from init.lua.
 * Use the CMakeLists_CPU.txt *i.e.* copy CMakeLists_CPU.txt to CMakeLists.txt.
 * Do a fresh install of gvnn and if possible uninstall the previous gvnn version.
 
 
-#Unit tests - Forward/Backward pass checks
+Unit tests - Forward/Backward pass checks
+=============
 
 All the relevant unit tests are in test.lua. The gif image below shows how to run the this file and check for any forward/backward pass errors in the layer implementation.
 
@@ -57,7 +60,8 @@ All the relevant unit tests are in test.lua. The gif image below shows how to ru
 All the modules that are in the repository have been tested properly and pass the forward and backward pass checks as defined in the test.lua. In case of any errors or visible hot-spots you may find in the code, please create an issue.
 
 
-#SO3 Layer 
+SO3 Layer 
+=============
 Rotations are represented as so(3) 3-vector. This vector is turned into rotation matrix via the exponential map. For a more detailed view of the so(3) representation and exponential map read this tutorial from Ethan Eade: [Lie-Algebra Tutorial](http://www.ethaneade.com/latex2html/lie_groups/lie_groups.html). This is what the exponential map is [Exponential Map](http://www.ethaneade.com/latex2html/lie_groups/node37.html). Also, Tom Drummond's notes on Lie-Algebra are a great source to learn about exponential maps [Tom Drummond's notes](https://dl.dropboxusercontent.com/u/23948930/Papers/3DGeometry.pdf). The reason for choosing so3 representation is mainly due to its appealing properties when linearising rotations (via taylor series expansion) for iterative image alignment via classic linearise-solve-update rule. The figure below shows how linearisation for SO3 is fitting a local plane on the sphere 
 
 ![Montage-2](assets/so3_exp.png)
@@ -144,7 +148,8 @@ For running on cuda just do :cuda() wherever needed. *e.g.* warping_net = warpin
 
 ![Montage-0](assets/so3_rot_example.png)
 
-#SE3 Layer
+SE3 Layer
+=============
 ``` lua
 require 'nn'
 require 'gvnn'
@@ -244,7 +249,8 @@ image.display(outImage[1])
 ```
 expand...
 
-#Optical Flow
+Optical Flow
+=============
 Optical flow is a 2D motion vector per-pixel. In many standard computer vision formulations, it is obtained via the solutions of a partial differential equations involving a data term which measures the pixel colour discrepency between the reference image at time *t* and a new image at time *t+1*, and a regulariser which helps smooth out the flow vectors at the neighbouring pixels. We provide two formulations of the optical flow vector *i.e.* the standard minimal parameterisation 2D vector and an over-parameterised 6DoF optical flow. Below, we show an example of how to use this layer to do self-supervised learning. The optical flow predicted by a convolutional LSTM is used to warp the frame at time *t* on frame at *t+1*. The relevant paper and code is available [here](https://github.com/viorik/ConvLSTM). 
 
 ![Montage-0](assets/opticalflow.png)
@@ -253,7 +259,8 @@ Optical flow is a 2D motion vector per-pixel. In many standard computer vision f
 Spatio-temporal autoencoder with differential memory. *Viorica Patraucean, Ankur Handa, Roberto Cipolla*, ICLRWorkshop Track 2016
 
 
-#Disparity
+Disparity
+=============
 Again, standard low-level vision provides an intuitively appealing way to do self-supervised learning. Now let us imagine instead of two frames in a video what if we had a stereo pair? We can then warp the left frame on top of the right in a similar way where the network instead predicts the disparity. 
 
 ![Montage-0](assets/disparity_and_slanted_plane_disparity.png)
@@ -261,20 +268,24 @@ Again, standard low-level vision provides an intuitively appealing way to do sel
 
 Unsupervised CNN for Single View Depth Estimation: Geometry to the rescue. *Ravi Garg, Vijay Kumar BG, Gustavo Carneiro, Ian Reid*, ECCV 2016.
 
-#Projection Layer
+Projection Layer
+=============
 The projection layer allows to project 3D data onto a 2D image plane via the projection matrix (in our case we use pin-hole camera projection matrix). This is extremely useful for data involving any 3D point cloud, depth and/or mesh and their projections in the 2D plane. This is differentiable only upto a point *i.e.* the forward/backward pass checks fail if the z-coordinate is below a certain threshold.
 
 <center><img src="assets/differentiable_renderer.png"></center>
 ![Montage-0](assets/projection_layer.png)
 
-#Lens Distortion
+Lens Distortion
+=============
 ![Montage-0](assets/Lens-Distortion.png)
 expand...
 
-#Nonrigid SO3
+Nonrigid SO3
+=============
 expand...
 
-#Nonrigid SE3
+Nonrigid SE3
+=============
 Tracking non-rigid deformable objects is possible via a full dense per-pixel SE3 motion field. We provide a non-rigid se3 layer which predicts per-pixel se3 vector that allows to warp one depth image onto another as a means to do self-supervised learning.
 
 <center><img src="assets/se3_nets.png"></center>
@@ -282,22 +293,27 @@ Tracking non-rigid deformable objects is possible via a full dense per-pixel SE3
 
 SE3-Nets: Learning Rigid Body Motion using Deep Neural Networks, *Arunkumar Byravan and Dieter Fox*, arXiv, 2016.
 
-#M-estimators
+M-estimators
+=============
 M-estimators have a long history in traditional computer vision and statistics. Michael Black's early papers in the 90s provide a compendium of various m-estimators and how most of them are superior to the standard L2 loss function and their ability to cull the outliers from the estimation of model parameters. We provide 4 different m-estimators namely, L2, Huber, Cauchy and Tukey.
 ![Montage-0](assets/M-estimators.png)
 
 
-#Future Improvements
+Future Improvements
+=============
 Bilinear interpolation can use the tex2D function within CUDA to speed up the interpolation. Also, need to add interpolation with taylor series expansion as done in classic PDE based variational optimisation methods. Warping should be done at a higher resolution and blurred and downsampled later on *i.e.* [DBW model used in Unger's super-resolution method](http://gpu4vision.icg.tugraz.at/papers/2010/dagm_2010_superresolution.pdf).
 
-#License 
+License 
+=============
 GPL. We would like to thank Dyson Technologies Limited for supporting this work.
 
-#Contact 
+Contact 
+=============
 
 Ankur Handa (handa(dot)ankur(at)gmail(dot)com)
 
-#Acknowledgements
+Acknowledgements
+=============
 
 If you find the code useful, please consider citing the following 
 ```
